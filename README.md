@@ -78,7 +78,7 @@ This file outlines the **coding challenge** requirements and instructions. Your 
 
 
  **Endpoints**  
-   - `GET /exchange-rate?symbol={symbol}&base={base}` – returns the current or last known price.  
+   - `GET /exchange-rate?symbol={symbol}&base={base}` – returns the current or last known price in the given base currency.
 
 ###  Portfolio Service
 
@@ -106,7 +106,7 @@ This file outlines the **coding challenge** requirements and instructions. Your 
 - **Persistence**: Hibernate/JPA for data access.  
 - **API Communication**: Microservices communicate via REST calls (JSON).  
 - **Tests**:  Provide **unit tests** (JUnit, Mockito) to validate services & controllers.  
-- **Documentation**:   Endpoint documentation (simple text or use add a postman/bruno collection if you have time).
+- **Documentation**:   Endpoint documentation (simple text or create a postman/bruno collection if you have time).
 
 
 ### How to Complete
@@ -115,4 +115,4 @@ This file outlines the **coding challenge** requirements and instructions. Your 
 3. **Test your solution**
 4. **Document your solution**
 5. **Create a github or gitlab project from your account** with your completed code.
-6. **Send us a link to checkout your solution**
+6. **Send us a link to your project**
