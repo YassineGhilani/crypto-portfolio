@@ -110,9 +110,8 @@ This file outlines the **coding challenge** requirements and instructions. Your 
 
 
 ### How to Complete
-1. **Clone or fork** this repository locally.  
+1. **Fork** this repository into a private gitlab repository
 2. **Implement your solution**
 3. **Test your solution**
 4. **Document your solution**
-5. **Create a github or gitlab project from your account** with your completed code.
-6. **Send us a link to your project**
+5. **invite** @olky_public so we can review your solution
