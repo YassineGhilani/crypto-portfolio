@@ -61,7 +61,7 @@ This file outlines the **coding challenge** requirements and instructions. Your 
    cd exchangerateservice
    mvn spring-boot:run
 
-2. ** Run the Portfolio Service** :
+2. **Run the Portfolio Service** :
    ```bash
    # Terminal 2:
    cd portfolioservice
