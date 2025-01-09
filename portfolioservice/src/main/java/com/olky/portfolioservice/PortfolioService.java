@@ -29,6 +29,7 @@ public class PortfolioService {
 
     public Optional<Portfolio> addHolding(Long id, Holding holding) {
         return portfolioRepository.findById(id).map(portfolio -> {
+            holding.setPortfolio(portfolio);
             portfolio.getHoldings().add(holding);
             return portfolioRepository.save(portfolio);
         });  

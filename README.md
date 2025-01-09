@@ -1,117 +1,37 @@
-# Crypto Portfolio & Exchange Rate Microservices
+## ExchangeRateService
 
-Welcome to the **Crypto Portfolio & Exchange Rate Microservices** repository.
+Port: 8081
 
-In this repository, you will find:
+Pour l'endpoint de ce projet GET /exchange-rate?symbol={symbol}&base={base}, vous pouvez tester avec un exemple comme:
 
-- A starter structure.
-- The coding challenges requirements in this file
+http://localhost:8081/exchange-rate?currency=bitcoin&base=usd (GET)
+résultat:
+![alt text](screen1.png)
 
-## Table of Contents
-- [Overview](#overview)
-- [Build Instructions](#build-instructions)
-- [Run Instructions](#run-instructions)
-- [Functional Requirements](#functional-requirements)
-- [Technical Requirements](#technical-requirements)
-- [How to Complete](#how-to-complete)
+   ## Problème rencontré:
+   Malgré que j'ai configuré CORS pour être consommé par l'application PortfolioService, pour ne pas y passer beaucoup de temps j'ai opté pour une solution alternative.
+## PortfolioService
 
+Port: 8082
 
----
+J'ai créé dans le dossier main les entités Holding, et Portfolio qui sont liées via une relation ManytoOne et OnetoMany respectivement. En plus j'ai utilisé le JpaRepository pour gérer le CRUD.
 
-## Overview
+PortfolioService regroupe les fonctions utilisées par les Endpoints.
 
-This file outlines the **coding challenge** requirements and instructions. Your task is to implement two microservices : 
-- **Exchange Rate Service**: Fetches or simulates crypto exchange rates (e.g., BTC, ETH in USD).  
-- **Portfolio Service**: Manages user portfolios, including CRUD operations and valuation.
+http://localhost:8082/portfolios (POST)
+![alt text](screen2.png)
 
+http://localhost:8082/portfolios/1 (GET)
+![alt text](screen3.png)
 
-**Estimated Time**: Spend around 4–8 hours building a minimal yet functional solution that demonstrates:
+http://localhost:8082/portfolios/1/holdings (POST)
+![alt text](screen4.png)
 
-- Spring Boot application structure & configuration
-- Hibernate/JPA entity modeling & data persistence
-- RESTful API design & best practices
-- Coding standards & best practices
-- Microservice architecture fundamentals
+http://localhost:8082/portfolios/1/valuation?base=usd (GET)
+![alt text](image.png)
 
+//ici j'ai ajouté une crypto que j'ai nommée "TEST"
+http://localhost:8082/portfolios/1/holdings/TEST (DELETE)
+![alt text](image-1.png)
 
----
-
-## Build Instructions
-
-1. **Clone this repository** :
-   ```bash
-   git clone https://gitlab.com/olky_public/simple-portfolio.git
-   cd crypto-portfolio
-
-2. **Build the Exchange Rate Service** :
-   ```bash
-   cd exchangerateservice
-   mvn clean install
-
-3. **Build the Portfolio Service** :
-   ```bash
-   cd portfolioservice
-   mvn clean install
-
----
-## Run instructions
-1. **Run the Exchange Rate Service**
-   ```bash
-   # Terminal 1:
-   cd exchangerateservice
-   mvn spring-boot:run
-
-2. **Run the Portfolio Service** :
-   ```bash
-   # Terminal 2:
-   cd portfolioservice
-   mvn spring-boot:run
-
----
-
-## Functional Requirements
-
-### Exchange Rate Service
-**Retrieve Crypto Prices**  
-   - A REST endpoint that returns the current price for given crypto symbols (e.g., BTC, ETH) in a base currency (e.g., USD).  
-   - You may **simulate** or **mock** an external API. (Bonus: integrate a real public crypto API like CoinGecko or CoinMarketCap.)
-
-
- **Endpoints**  
-   - `GET /exchange-rate?symbol={symbol}&base={base}` – returns the current or last known price in the given base currency.
-
-###  Portfolio Service
-
- **Manage Portfolios**  
-   - A user can hold multiple crypto assets in a Portfolio.  
-   - CRUD operations: create a new portfolio, add crypto holdings, remove holdings, list portfolios.
-
-**Valuation**  
-   - An endpoint that returns the total value of a portfolio in a given base currency (e.g. USD).  
-   - Must call the Exchange Rate Service to get the latest price.
-
-**Endpoints**  
-   - `POST /portfolios` – create a new portfolio.  
-   - `GET /portfolios/{id}` – get portfolio details (including each crypto holding).  
-   - `POST /portfolios/{id}/holdings` – add a holding.  
-   - `DELETE /portfolios/{id}/holdings/{symbol}` – remove a holding.  
-   - `GET /portfolios/{id}/valuation?base={base}` – returns total value in the given base currency.
-
----
-## Technical Requirements
-
-- **Backend**: Java 17 and Spring Boot 3.4.1
-- **Build Tool**: Maven.  
-- **Data**:  Any relational database (H2 in-memory for simplicity).  
-- **Persistence**: Hibernate/JPA for data access.  
-- **API Communication**: Microservices communicate via REST calls (JSON).  
-- **Tests**:  Provide **unit tests** (JUnit, Mockito) to validate services & controllers.  
-- **Documentation**:   Endpoint documentation (simple text or create a postman/bruno collection if you have time).
-
-
-### How to Complete
-1. **Fork** this repository into a private gitlab repository
-2. **Implement your solution**
-3. **Test your solution**
-4. **Document your solution**
-5. **invite** @olky_public so we can review your solution
+Faute de temps, j'avais créé les tests mais j'avais trouvé que j'allais oerdre plus de temps pour les regler en + du soucis de connexion entre localhost:8081 et localhost:8082 malgré la configuration du CORS, j'ai utilisé directement l'api du site https://api.coingecko.com/api/v3/simple/price 
