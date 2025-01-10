@@ -46,6 +46,9 @@ public class PortfolioService {
     }
 
     public double getPortfolioValuation(Portfolio portfolio, String base) {
+        if (portfolio == null || portfolio.getHoldings() == null) {
+            return 0.0; // Retourne une évaluation nulle si le portfolio est null
+        }
         double valuation = 0;
         for (Holding holding : portfolio.getHoldings()) {
             double exchangeRate = exchangeRateServiceClient.getExchangeRate(holding.getSymbol(), base);
